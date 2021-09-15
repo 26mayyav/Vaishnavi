@@ -11,6 +11,9 @@ public class FirsTeleop  extends LinearOpMode {
     DcMotor back_left_wheel;
     DcMotor back_right_wheel;
 
+    double powerFactor = 0.3;
+    int directionFactor =-1;
+
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -22,10 +25,10 @@ public class FirsTeleop  extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()){
-            front_left_wheel.setPower(gamepad1.left_stick_y);
-            front_right_wheel.setPower(gamepad1.left_stick_y);
-            back_left_wheel.setPower(gamepad1.left_stick_y);
-            back_right_wheel.setPower(gamepad1.left_stick_y);
+            front_left_wheel.setPower(gamepad1.left_stick_y*powerFactor);
+            front_right_wheel.setPower(gamepad1.left_stick_y*directionFactor*powerFactor);
+            back_left_wheel.setPower(gamepad1.left_stick_y*powerFactor);
+            back_right_wheel.setPower(gamepad1.left_stick_y*directionFactor*powerFactor);
         }
 
     }
